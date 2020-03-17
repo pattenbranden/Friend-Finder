@@ -1,23 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compatibility Questionair!</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compatibility Questionair!</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
+
 <body>
-    <div class="jumbotron">
-    <h1 class="display-4">You're on the Compatibility Questionair!</h1>
-    <p class="lead">Fill out a few questions and see if you match with any other users!</p>
-    <hr class="my-4">
-    <p>Matches are based on answers in common, the more you have, the more likely you'll match!</p>
-    <a class="btn btn-primary btn-lg" href="/" role="button"><h3>Home</h3></a>
-    <a class="btn btn-primary btn-lg" href="/results" role="button"><h3>Results</h3></a>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="jumbotron">
+          <h1 class="display-4">You're on the Compatibility Questionair!</h1>
+          <p class="lead">Fill out a few questions and see if you match with any other users!</p>
+          <hr class="my-4">
+          <p>Matches are based on answers in common, the more you have, the more likely you'll match!</p>
+          <a class="btn btn-primary btn-lg" href="/" role="button">
+            <h3>Home</h3>
+          </a>
+          <a class="btn btn-primary btn-lg" href="/results" role="button">
+            <h3>Results</h3>
+          </a>
+        </div>
+        <h1>THE QUIZ GOES HERE</h1>
+        <span id="quiz-display">The quiz goes here</span>
+
+        <script type="text/javascript">
+
+        </script>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <form name="myWebForm" action="/api.results" method="post">
+          <h4>What is your favorite color?</h4>
+          <input type="radio" name="color" /> : Blue<br />
+          <input type="radio" name="color" /> : Green<br />
+          <input type="radio" name="color" /> : Yellow<br />
+          <input type="radio" name="color" /> : Orange<br />
+          <input type="radio" name="color" /> : Red<br />
+          <input type="radio" name="color" /> : Purple<br />
+          <h4>Please select your gender.</h4>
+          <input type="radio" name="gender" /> : Male<br />
+          <input type="radio" name="gender" /> : Female<br />
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
+            Submit</button>
+
+      </div>
+
+    </div>
   </div>
-  <h1>THE QUIZ GOES HERE</h1>
-    <script type="text/javascript">
-        
-    </script>
 </body>
+
 </html>
