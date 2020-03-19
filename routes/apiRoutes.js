@@ -3,39 +3,68 @@ var path = require("path");
 
 // var results = require("../data/resultsData")
 module.exports = function (app) {
-    //post the results
-    // app.post("/api/results", function(req,res){
-    //     users.push(req.body)
-    //     console.log(req.body)
-    //     res.sendFile(__dirname, "../public/results.html");
-    // })
-    //
+    app.get("/api/userData", function(req, res) {
+        res.json(friends);
+      });
+
     app.post("/api/userData", function (req, res) {
-        var newUser = req.body;
-        var newUserScores = req.body.scores;
-        var absArr = [];
-        console.log(newUser)
-        for (var i = 0; (users.length - 1); i++) {
-            console.log("________________________________________\n" + users[i].name + "\n" + users[i].photo)
-            var databaseUserScores = users[i].scores;
-            var difference = 0;
-            for (var j = 0; j < databaseUserScores.length; j++) {
-                difference += (Math.abs(databaseUserScores[j] - newUserScores[j]))
-            }
-            absArr.push(difference);
-            console.log("________________________________________\n")
+        //keep track of difference
+        var totalDifference = 0;
+        //set a default object
+        var bestMatch = {
+          name: "Default",
+          photo: "Default Photo URL",
+          friendDifference: 1000
+        };
+        // set variables for submitted object 
+        var userData = req.body;
+        var userName = userData.name;
+        var userScores = userData.scores;
+        
+        var b = userScores.map(function(item) {
+          return parseInt(item, 10);
+        });
+        // create user object with variables from submitted object 
+        userData = {
+          name: req.body.name,
+          photo: req.body.photo,
+          scores: b
+        };
+    
+        console.log("Name: " + userName);
+        console.log("User Score " + userScores);
+        sum 
+        var sum = b.reduce((a, b) => a + b, 0);
+    
+        console.log("Sum of users score " + sum);
+        console.log("Best match friend diff " + bestMatch.friendDifference);
+        console.log("+++++++=================++++++++++");
+    
+        for (var i = 0; i < users.length; i++) {
+          console.log(users[i].name);
+          totalDifference = 0;
+          console.log("Total Diff " + totalDifference);
+          console.log("Best match friend diff " + bestMatch.friendDifference);
+    
+          var bfriendScore = users[i].scores.reduce((a, b) => a + b, 0);
+          console.log("Total friend score " + bfriendScore);
+          totalDifference += Math.abs(sum - bfriendScore);
+          console.log("-------------------------> " + totalDifference);
+    
+          if (totalDifference <= bestMatch.friendDifference) {
+            bestMatch.name = users[i].name;
+            bestMatch.photo = users[i].photo;
+            bestMatch.friendDifference = totalDifference;
+          }
+          console.log(totalDifference + " Total Difference");
         }
-        var lowestAbs = Math.min(...absArr);
-        var match = absArr.indexOf(lowestAbs);
-
-        res.json(users[match]);
-        users.push(newUser);
-
-    })
-
-    app.get("/api/userData", function (req, res) {
-        res.json(users);
-    })
+        console.log(bestMatch);
+    
+        users.push(userData);
+        console.log("New user added");
+        console.log(userData);
+        res.json(bestMatch);
+      });
 
 }
 
